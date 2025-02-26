@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    
+    <title>Cricket Players database</title>
+		<link href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel = "stylesheet"> 
+    <script src ="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+  </head>
+  <body>
+    <header>
+   
+			<nav class=" navbar navbar-expand-lg bg-body-tertiary item-center">
+       
+        <div class="container container-fluid">
+         
+          <a class="navbar-brand " href="#">Cricket Player Database</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="player.html">Players</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="report.html">Report</a>
+              </li>
+            </ul>
+          </div>
+        
+        </div>
+       
+      </nav>
+</header>
+
+<main>
+	<section class="container ">
+	<h3 class="mt-4">Player Details</h3> 
+	</section>
+  <section id = "playersDetail"></section>
+	
+</main>
+  <footer>
+   
+  </footer>
+
+	<script>
+		let palyers = [
+			{id : "1", name: "player 1", title : "<strong>Country: </strong> India ",role: "<strong>Role: </strong> Batsman"},
+			{id : "2", name: "player 2", title : "<strong>Country: </strong> Australia",role: "<strong>Role: </strong> Bowler"}
+			
+		]
+
+function getParameterById(id){
+		
+//get the id from the URL
+		let url = new URL(window.location.href)
+
+return url.searchParams.get(id)
+}
+let playerId  = getParameterById('id')
+
+//find that id in the database
+let player;
+for (let i = 0; i< palyers.length; i++ ){
+	if (palyers[i].id === playerId){
+		player =palyers[i]
+	}
+}
+//display the details on the view
+
+
+	let playersDetailElement = document.getElementById('playersDetail');
+	if (player){
+	playersDetailElement.innerHTML = `
+	<div class ="container mt-2">
+	<div class="col-md-12">
+  <div  class="card mt-12">
+		<div  class="card-header">
+    <h2>${player.name}</h2>
+	</div>
+		<div  class="card-body">
+      <P>${player.title}</P>
+			<P>${player.role}</P>
+      
+  </div>
+</div>
+</div>
+</div>
+	`
+} else {
+	playersDetailElement.innerHTML = 'player not found.'
+}
+	</script>
+  </body>
+</html>
